@@ -3,6 +3,10 @@ const inputDay = document.querySelector('#day')
 const inputMonth = document.querySelector('#month')
 const inputYear = document.querySelector('#year')
 
+const spanYear = document.querySelector('#spanYear')
+const spanMonth = document.querySelector('#spanMonth')
+const spanDay = document.querySelector('#spanDay')
+
 form.addEventListener('submit', (event) => {
     event.preventDefault()
     var dayValue
@@ -22,7 +26,7 @@ form.addEventListener('submit', (event) => {
         labelDay.classList.remove('error')
     }
     
-    /* -------- ---------------------- MESE ----------------------------- */
+    /* -------- ---------------------- MES ----------------------------- */
 
     if(inputMonth.value === '' ){
         let labelMonth = document.querySelector('#labelMonth')
@@ -30,7 +34,7 @@ form.addEventListener('submit', (event) => {
         labelMonth.classList.add('error')
 
     }else{
-        monthValue = inputMonth.value
+        monthValue = inputMonth.value -1
         labelMonth.classList.remove('error')
     }
     
@@ -47,11 +51,14 @@ form.addEventListener('submit', (event) => {
         labelYear.classList.remove('error')
     }
     
-
-    data = new Date(yearValue, monthValue, dayValue)
-    console.log(data)
-
     if(inputDay.value != '' && inputMonth.value != '' && inputYear.value != '' ){
-        alert('nenhum tá vazio')
+        let data = new Date()
+        let ano = data.getFullYear()
+        let mes = data.getMonth()
+        let dia = data.getDate()
+        
+        spanYear.innerHTML = ano - yearValue
+        spanMonth.innerHTML = mes - monthValue
+        spanDay.innerHTML = dia - dayValue
     }
 })
