@@ -13,14 +13,21 @@ form.addEventListener('submit', (event) => {
     var monthValue
     var yearValue
     
+    const pDay = document.querySelector('#pDay')
+    const pMonth = document.querySelector('#pMonth')
+    const pYear = document.querySelector('#pYear')
 
+    let dataAtual = new Date()
+    let ano = dataAtual.getFullYear()
+    let mes = dataAtual.getMonth()
+    let dia = dataAtual.getDate()
     /* -------- ---------------------- DIA ----------------------------- */
 
     if(inputDay.value === '' ){
         let labelDay = document.querySelector('#labelDay')
 
         labelDay.classList.add('error')
-
+        pDay.innerHTML = 'This field is required'
     }else{
         dayValue = inputDay.value
         labelDay.classList.remove('error')
@@ -32,31 +39,40 @@ form.addEventListener('submit', (event) => {
         let labelMonth = document.querySelector('#labelMonth')
 
         labelMonth.classList.add('error')
-
-    }else{
+        pMonth.innerHTML = 'This field is required'
+    }
+    else if(inputMonth.value > 12){
+        labelMonth.classList.add('error')
+        pMonth.innerHTML = 'Must be a valid month'
+    }
+    else{
         monthValue = inputMonth.value -1
         labelMonth.classList.remove('error')
+
     }
     
     /* -------- ---------------------- ANO ----------------------------- */
 
 
-    if(inputDay.value === '' ){
+    if(inputYear.value === '' ){
         let labelYear = document.querySelector('#labelYear')
 
         labelYear.classList.add('error')
-
-    }else{
+        pYear.innerHTML = 'This field is required'
+    }
+    else if (inputYear.value > ano){
+        labelYear.classList.add('error')
+        pYear.innerHTML = 'Must be in the past'
+    }
+    else{
         yearValue = inputYear.value
         labelYear.classList.remove('error')
     }
     
     if(inputDay.value != '' && inputMonth.value != '' && inputYear.value != '' ){
-        let data = new Date()
-        let ano = data.getFullYear()
-        let mes = data.getMonth()
-        let dia = data.getDate()
-        
+        const dataPassada = new Date(yearValue, monthValue, dayValue)
+
+
         spanYear.innerHTML = ano - yearValue
         spanMonth.innerHTML = mes - monthValue
         spanDay.innerHTML = dia - dayValue

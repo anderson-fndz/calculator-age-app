@@ -55,8 +55,19 @@ label{
     color: #ff5757;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
 label.error~input{
     border: 1px solid #ff5757;
+}
+
+label.error~input:focus{
+    border: 1px solid #e34d4d;
 }
 
 .error~input+p{
