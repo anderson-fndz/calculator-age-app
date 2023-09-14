@@ -18,27 +18,6 @@ form.addEventListener('submit', (event) => {
     const pYear = document.querySelector('#pYear')
 
     let dataAtual = new Date()
-    /* -------- ---------------------- DIA ----------------------------- */
-
-    if (inputDay.value === '') {
-        let labelDay = document.querySelector('#labelDay')
-
-        labelDay.classList.add('error')
-        pDay.innerHTML = 'This field is required'
-
-    } else if(inputDay.value > 31 || inputDay.value < 1 ){
-        labelDay.classList.add('error')
-        pDay.innerHTML = 'Must be a valid day'
-
-        let booleanD = false 
-    }  
-    else {
-        dayValue = inputDay.value
-        labelDay.classList.remove('error')
-
-        booleanD = true
-    }
-
     /* -------- ---------------------- MES ----------------------------- */
 
     if (inputMonth.value === '') {
@@ -58,10 +37,7 @@ form.addEventListener('submit', (event) => {
         labelMonth.classList.remove('error')
 
         booleanM = true
-    }  
-
-
-
+    }
 
     /* -------- ---------------------- ANO ----------------------------- */
 
@@ -84,9 +60,58 @@ form.addEventListener('submit', (event) => {
         booleanY = true
     }
 
-/*-------------------------- OUTRA COISA ------------------------------- */ 
+    /* -------- ---------------------- DIA ----------------------------- */
 
-    if (inputDay.value != '' && inputMonth.value != '' && inputYear.value != '' && booleanD == true && booleanM == true && booleanY == true) {
+    if (inputDay.value === '') {
+        let labelDay = document.querySelector('#labelDay')
+
+        labelDay.classList.add('error')
+        pDay.innerHTML = 'This field is required'
+
+    } else if (inputMonth.value == 1 || inputMonth.value == 3 || inputMonth.value == 5 || inputMonth.value == 7 || inputMonth.value == 8 || inputMonth.value == 10 || inputMonth.value == 12) {
+        if(inputDay.value > 31 || inputDay.value < 1 ){
+            labelDay.classList.add('error')
+            pDay.innerHTML = 'Must be a valid day'
+        }else{
+            dayValue = inputDay.value
+            labelDay.classList.remove('error')
+    
+        }
+    } else if(inputMonth.value == 4 || inputMonth.value == 6 || inputMonth.value == 9 || inputMonth.value == 11){
+        if(inputDay.value > 30 || inputDay.value < 1){
+            labelDay.classList.add('error')
+            pDay.innerHTML = 'Must be a valida day'
+            let booleanD = false 
+        }else{
+            dayValue = inputDay.value
+            labelDay.classList.remove('error')
+    
+    
+        }
+    } else if(inputMonth.value = 2){
+        if(inputDay.value > 28 || inputDay.value < 1){
+            labelDay.classList.add('error')
+            pDay.innerHTML = 'Must be a valida day'
+            let booleanD = false 
+        }else{
+            dayValue = inputDay.value
+            labelDay.classList.remove('error')
+    
+        }
+    }
+    /*else {
+        dayValue = inputDay.value
+        labelDay.classList.remove('error')
+
+        console.log(`o value é ${dayValue}`)
+        booleanD = true
+    }*/
+
+
+console.log(dayValue, monthValue, yearValue)
+    /*-------------------------- OUTRA COISA ------------------------------- */
+
+    if (inputDay.value != '' && inputMonth.value != '' && inputYear.value != ''/* && booleanD == true && booleanM == true && booleanY == true*/) {
         let dataPassada = new Date(yearValue, monthValue, dayValue)
         DifenrecaDatas(dataAtual, dataPassada)
     }
