@@ -26,13 +26,17 @@ form.addEventListener('submit', (event) => {
         labelDay.classList.add('error')
         pDay.innerHTML = 'This field is required'
 
-    } else if(inputDay.value > 31 ){
+    } else if(inputDay.value > 31 || inputDay.value < 1 ){
         labelDay.classList.add('error')
         pDay.innerHTML = 'Must be a valid day'
+
+        let booleanD = false 
     }  
     else {
         dayValue = inputDay.value
         labelDay.classList.remove('error')
+
+        booleanD = true
     }
 
     /* -------- ---------------------- MES ----------------------------- */
@@ -46,12 +50,18 @@ form.addEventListener('submit', (event) => {
     else if (inputMonth.value > 12 || inputMonth.value < 1) {
         labelMonth.classList.add('error')
         pMonth.innerHTML = 'Must be a valid month'
+
+        let booleanM = false
     }
     else {
         monthValue = inputMonth.value - 1
         labelMonth.classList.remove('error')
 
-    }
+        booleanM = true
+    }  
+
+
+
 
     /* -------- ---------------------- ANO ----------------------------- */
 
@@ -65,15 +75,18 @@ form.addEventListener('submit', (event) => {
     else if (inputYear.value > dataAtual.getFullYear()) {
         labelYear.classList.add('error')
         pYear.innerHTML = 'Must be in the past'
+
+        let booleanY = false
     }
     else {
         yearValue = inputYear.value
         labelYear.classList.remove('error')
+        booleanY = true
     }
 
 /*-------------------------- OUTRA COISA ------------------------------- */ 
 
-    if (inputDay.value != '' && inputMonth.value != '' && inputYear.value != '') {
+    if (inputDay.value != '' && inputMonth.value != '' && inputYear.value != '' && booleanD == true && booleanM == true && booleanY == true) {
         let dataPassada = new Date(yearValue, monthValue, dayValue)
         DifenrecaDatas(dataAtual, dataPassada)
     }
