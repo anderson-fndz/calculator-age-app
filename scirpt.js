@@ -12,69 +12,90 @@ form.addEventListener('submit', (event) => {
     var dayValue
     var monthValue
     var yearValue
-    
+
     const pDay = document.querySelector('#pDay')
     const pMonth = document.querySelector('#pMonth')
     const pYear = document.querySelector('#pYear')
 
     let dataAtual = new Date()
-    let ano = dataAtual.getFullYear()
-    let mes = dataAtual.getMonth()
-    let dia = dataAtual.getDate()
     /* -------- ---------------------- DIA ----------------------------- */
 
-    if(inputDay.value === '' ){
+    if (inputDay.value === '') {
         let labelDay = document.querySelector('#labelDay')
 
         labelDay.classList.add('error')
         pDay.innerHTML = 'This field is required'
-    }else{
+
+    } else if(inputDay.value > 31 ){
+        labelDay.classList.add('error')
+        pDay.innerHTML = 'Must be a valid day'
+    }  
+    else {
         dayValue = inputDay.value
         labelDay.classList.remove('error')
     }
-    
+
     /* -------- ---------------------- MES ----------------------------- */
 
-    if(inputMonth.value === '' ){
+    if (inputMonth.value === '') {
         let labelMonth = document.querySelector('#labelMonth')
 
         labelMonth.classList.add('error')
         pMonth.innerHTML = 'This field is required'
     }
-    else if(inputMonth.value > 12){
+    else if (inputMonth.value > 12 || inputMonth.value < 1) {
         labelMonth.classList.add('error')
         pMonth.innerHTML = 'Must be a valid month'
     }
-    else{
-        monthValue = inputMonth.value -1
+    else {
+        monthValue = inputMonth.value - 1
         labelMonth.classList.remove('error')
 
     }
-    
+
     /* -------- ---------------------- ANO ----------------------------- */
 
 
-    if(inputYear.value === '' ){
+    if (inputYear.value === '') {
         let labelYear = document.querySelector('#labelYear')
 
         labelYear.classList.add('error')
         pYear.innerHTML = 'This field is required'
     }
-    else if (inputYear.value > ano){
+    else if (inputYear.value > dataAtual.getFullYear()) {
         labelYear.classList.add('error')
         pYear.innerHTML = 'Must be in the past'
     }
-    else{
+    else {
         yearValue = inputYear.value
         labelYear.classList.remove('error')
     }
-    
-    if(inputDay.value != '' && inputMonth.value != '' && inputYear.value != '' ){
-        const dataPassada = new Date(yearValue, monthValue, dayValue)
 
+/*-------------------------- OUTRA COISA ------------------------------- */ 
 
-        spanYear.innerHTML = ano - yearValue
-        spanMonth.innerHTML = mes - monthValue
-        spanDay.innerHTML = dia - dayValue
+    if (inputDay.value != '' && inputMonth.value != '' && inputYear.value != '') {
+        let dataPassada = new Date(yearValue, monthValue, dayValue)
+        DifenrecaDatas(dataAtual, dataPassada)
     }
 })
+
+function DifenrecaDatas(dataAtual, dataPassada) {
+    let dataEmMilissegundos = Math.abs(dataAtual.getTime() - dataPassada.getTime());
+    let diasDifenreca = Math.ceil(dataEmMilissegundos / (1000 * 60 * 60 * 24));
+    let mesDiferenca = (diasDifenreca / 30.5)
+    let anoDiferenca = Math.floor(mesDiferenca / 12)
+    if (diasDifenreca >= 30) {
+        mesDiferenca = Math.floor(diasDifenreca / 30.5)
+        diasDifenreca = diasDifenreca % 31
+    }
+
+    if (mesDiferenca > 12) {
+        anoDiferenca = Math.floor(mesDiferenca / 12)
+        mesDiferenca = mesDiferenca % 12
+    }
+
+    spanDay.innerHTML = diasDifenreca
+    spanMonth.innerHTML = mesDiferenca
+    spanYear.innerHTML = anoDiferenca
+
+}
