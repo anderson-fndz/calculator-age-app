@@ -30,13 +30,12 @@ form.addEventListener('submit', (event) => {
         labelMonth.classList.add('error')
         pMonth.innerHTML = 'Must be a valid month'
 
-        let booleanM = false
+
     }
     else {
         monthValue = inputMonth.value - 1
         labelMonth.classList.remove('error')
 
-        booleanM = true
     }
 
     /* -------- ---------------------- ANO ----------------------------- */
@@ -52,12 +51,10 @@ form.addEventListener('submit', (event) => {
         labelYear.classList.add('error')
         pYear.innerHTML = 'Must be in the past'
 
-        let booleanY = false
     }
     else {
         yearValue = inputYear.value
         labelYear.classList.remove('error')
-        booleanY = true
     }
 
     /* -------- ---------------------- DIA ----------------------------- */
@@ -69,34 +66,28 @@ form.addEventListener('submit', (event) => {
         pDay.innerHTML = 'This field is required'
 
     } else if (inputMonth.value == 1 || inputMonth.value == 3 || inputMonth.value == 5 || inputMonth.value == 7 || inputMonth.value == 8 || inputMonth.value == 10 || inputMonth.value == 12) {
-        if(inputDay.value > 31 || inputDay.value < 1 ){
+        if (inputDay.value > 31 || inputDay.value < 1) {
             labelDay.classList.add('error')
             pDay.innerHTML = 'Must be a valid day'
-        }else{
+        } else {
             dayValue = inputDay.value
             labelDay.classList.remove('error')
-    
         }
-    } else if(inputMonth.value == 4 || inputMonth.value == 6 || inputMonth.value == 9 || inputMonth.value == 11){
-        if(inputDay.value > 30 || inputDay.value < 1){
+    } else if (inputMonth.value == 4 || inputMonth.value == 6 || inputMonth.value == 9 || inputMonth.value == 11) {
+        if (inputDay.value > 30 || inputDay.value < 1) {
             labelDay.classList.add('error')
             pDay.innerHTML = 'Must be a valida day'
-            let booleanD = false 
-        }else{
+        } else {
             dayValue = inputDay.value
             labelDay.classList.remove('error')
-    
-    
         }
-    } else if(inputMonth.value = 2){
-        if(inputDay.value > 28 || inputDay.value < 1){
+    } else if (inputMonth.value = 2) {
+        if (inputDay.value > 28 || inputDay.value < 1) {
             labelDay.classList.add('error')
             pDay.innerHTML = 'Must be a valida day'
-            let booleanD = false 
-        }else{
+        } else {
             dayValue = inputDay.value
             labelDay.classList.remove('error')
-    
         }
     }
     /*else {
@@ -108,7 +99,6 @@ form.addEventListener('submit', (event) => {
     }*/
 
 
-console.log(dayValue, monthValue, yearValue)
     /*-------------------------- OUTRA COISA ------------------------------- */
 
     if (inputDay.value != '' && inputMonth.value != '' && inputYear.value != ''/* && booleanD == true && booleanM == true && booleanY == true*/) {
@@ -120,9 +110,9 @@ console.log(dayValue, monthValue, yearValue)
 function DifenrecaDatas(dataAtual, dataPassada) {
     let dataEmMilissegundos = Math.abs(dataAtual.getTime() - dataPassada.getTime());
     let diasDifenreca = Math.ceil(dataEmMilissegundos / (1000 * 60 * 60 * 24));
-    let mesDiferenca = (diasDifenreca / 30.5)
+    let mesDiferenca = Math.floor(diasDifenreca / 30.8)
     let anoDiferenca = Math.floor(mesDiferenca / 12)
-    if (diasDifenreca >= 30) {
+    if (diasDifenreca > 30) {
         mesDiferenca = Math.floor(diasDifenreca / 30.5)
         diasDifenreca = diasDifenreca % 31
     }
