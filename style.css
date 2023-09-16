@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-main{
+main {
     background-color: #F0F0F0;
     width: 100%;
     height: 100vh;
@@ -16,7 +16,7 @@ main{
     align-items: center;
 }
 
-section{
+section {
     background-color: #fff;
     width: 840px;
     height: 650px;
@@ -26,20 +26,20 @@ section{
     align-items: center;
 }
 
-.box{
+.box {
     position: absolute;
     width: 728px;
     height: 556px;
 }
 
-.container-input{
+.container-input {
     width: 545px;
     height: 152px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-label{
+label {
     font-size: 1rem;
     letter-spacing: 5px;
     text-transform: uppercase;
@@ -47,38 +47,39 @@ label{
 
 }
 
-.input-box p{
+.input-box p {
     display: none;
 }
-/* ERROR */ 
-.error{
+
+/*  --------------------ERROR ---------------- */
+.error {
     color: #ff5757;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 
-label.error~input{
+label.error~input {
     border: 1px solid #ff5757;
 }
 
-label.error~input:focus{
+label.error~input:focus {
     border: 1px solid #e34d4d;
 }
 
-.error~input+p{
+.error~input+p {
     display: block;
     font-size: 0.8rem;
     color: #ff5757;
     font-style: italic;
 }
 
-/* */
-.input-box input{
+/* ---------------------- ERROR -----------------*/
+.input-box input {
     width: 160px;
     height: 70px;
     padding-left: 23px;
@@ -88,19 +89,19 @@ label.error~input:focus{
     outline: none;
 }
 
-.input-box input:focus{
+.input-box input:focus {
     border: 1px solid #854dff;
 }
 
 
-hr{
+hr {
     height: 1px;
     width: 630px;
     background-color: #ECECEC;
     outline: none;
 }
 
-.button-form{
+.button-form {
     width: 95px;
     height: 95px;
     position: absolute;
@@ -111,24 +112,90 @@ hr{
     border: none;
 }
 
-button:hover{
+button:hover {
     background-color: #000;
 }
 
-.container-results{
+.container-results {
     height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.container-results span{
+.container-results span {
     color: #854dff;
     font-style: italic;
 }
 
-.container-results h1{
+.container-results h1 {
     font-size: 92px;
     font-style: italic;
     line-height: 7rem;
+}
+
+
+@media (max-width: 415px) {
+    section {
+        width: 343px;
+        height: 450px;
+        margin: 0px 5px;
+        border-radius: 24px 24px 98px 24px;
+    }
+
+    .box {
+        width: 295px;
+        height: 387px;
+    }
+
+    .container-input {
+        width: 100%;
+        height: 105px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .input-box {
+        width: 88px;
+        height: 105px;
+    }
+
+    .input-box label {
+        font-size: 0.7rem;
+    }
+
+    .input-box input {
+        width: 88px;
+        height: 53px;
+        font-size: 1.5rem;
+        padding-left: 1rem;
+    }
+
+    .button-form {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        left: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button-form img {
+        width: 50%;
+    }
+
+    hr {
+        width: 100%;
+    }
+
+    .container-results {
+        width: 100%;
+        height: 282px;
+    }
+
+    .container-results h1 {
+        font-size: 3.2rem;
+        line-height: 4rem;
+    }
 }
