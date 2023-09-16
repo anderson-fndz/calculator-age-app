@@ -150,7 +150,7 @@ button:hover {
 
     .container-input {
         width: 100%;
-        height: 105px;
+        height: 130px;
         display: flex;
         justify-content: space-between;
     }
@@ -162,10 +162,18 @@ button:hover {
 
     .input-box label {
         font-size: 0.7rem;
+        letter-spacing: 3px;
     }
 
+    .error~input+p {
+        margin-top: 2px;
+        font-size: 0.55rem;
+        line-height: 0.7rem;
+    }
+    
+
     .input-box input {
-        width: 88px;
+        width: 95px;
         height: 53px;
         font-size: 1.5rem;
         padding-left: 1rem;
@@ -176,6 +184,7 @@ button:hover {
         height: 60px;
         position: absolute;
         left: 40%;
+        top: 100px ;
         display: flex;
         align-items: center;
         justify-content: center;
